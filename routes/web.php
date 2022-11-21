@@ -46,4 +46,5 @@ Route::get('/profile', [profileController::class, 'profileView'])->name('profile
 Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
 Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
 Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');
+Route::post('/search', [uDashController::class,'searchUser'])->name('searchUser');
 
