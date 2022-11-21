@@ -20,8 +20,9 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name'=>'pulok',
             'email'=>'123@gmail.com',
-            'password'=>'12345',
-            'phone'=>'01727228929'
+            'dob'=>'9/11/1999',
+            'password'=>'12345'
+    
         ]);
 
 

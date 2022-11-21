@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 
 class registrationController extends Controller
@@ -16,33 +17,61 @@ class registrationController extends Controller
         
         $this->validate($request,
         [
-            // 'name' => 'required||min:5||string',
-            'email' => 'required || email:rfc,dns',
-            // 'dob' => 'required|date|before:2001',
-            'pass' => 'required'
-            // 'confirmPass' => 'required'
+            'name'=>'required|min:3|max:20',
+            'email'=>'required|email|max:255|unique:users,email',
+            'dob' => 'required|date|before:2001',
+            'pass'=>'required|between:6,15',
+            'cPass'=>'required|same:pass'
 
         ],
         [
-            // 'name.required'=>'*This field cant be empty',
-            // 'name.min'=>'*Name should be atlest 5 characters',
-            'email.string' =>'*This field should be a string',
-            'email.required' =>'*This field cant be empty',
-            'pass.required' => '*This field cant be empty'
-            // 'dob.required' =>'*This field cant be empty',
-            // 'dob.before' =>'*User should be above 18 years old to create account'
+
+            'name.required'=>'Please put your name',
+            'name.min'=>'Name must be greater than 2 charcters',
+
+           
+            'email.required'=>'Please put your email',
+            'email.unique'=>'your email should be unique',
+
+            'dob.required'=>'Please put your password',
+            'dob.before'=>'User Must be 18 Years old',
+            
+            'pass.required'=>'Please put your password',
+            'pass.between'=>'your password should contain atleast 6 characters and highest 15 character',
+
+            'cPass.required'=>'your password should match',
+            'cPass.required'=>'your password should match',
+
+
+            
         ]
         );
 
 
-
-        $output = "<h1> Submitted</h1>";
-        // $output .="Name: ".$request->name;
-        $output .="<br>Email: ".$request->email;
-        // $output .="<br>Date of Birth: ".$request->dob;
-        $output .="<br>Password: ".$request->pass;
-        // $output .="<br>Confirm Password: ".$request->pass;
+        if (isset($error))
+        {
+        $output="<h1>Submitted</h1>";
+        $output.="username: ".$request->name;
+        $output.="<br>email: ".$request->email;
+        $output.="<br>email: ".$request->dob;
+        $output.="<br>lan: ".$request->password;
         return $output;
+        }
+        else{
+            $usetable=new user();
+            $usetable->name=$request->name;
+            $usetable->email=$request->email;
+            $usetable->dob=$request->dob;
+            $usetable->password=$request->pass;
+            $usetable->save();
+
+    
+
+            echo '<script>alert("Registration Completed")</script>';
+          
+            return view('Pages.User.login');
+        }
+
 
     }
 

@@ -4,7 +4,9 @@
 <div class="custom-login">
     <div class="center">
 
-            <form action="/register" method="post">
+        <h1> USER PROFILE </h1>
+
+        <form action="/submitdata" method="post">
             {{csrf_field()}}
 
             <!-- Name: -->
@@ -92,8 +94,10 @@
 
             <button type="submit" class="btn btn-primary" value="Submit">Sign Up</button>
             <!-- <input type="submit" value="Submit"> -->
-            </form>
-</div>
+            </form>            
+            
+
+    </div>
 </div>
 
 

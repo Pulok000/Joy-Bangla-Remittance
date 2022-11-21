@@ -27,7 +27,7 @@ use App\Http\Controllers\uDashController;
 Route::get('/', [homeController::class, 'home'])->name('home');
 //login Controller
 Route::get('/login', [loginController::class,'login'])->name('login');
-Route::post('/login', [loginController::class,'loginConfirm'])->name('login');
+Route::post('/login', [loginController::class,'loginConfirm'])->name('loginConfirm');
 //logout
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
@@ -36,11 +36,13 @@ Route::get('/userDashboard', [uDashController::class,'dashboard'])->name('dashbo
 // Route::post('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
 
 // //registration
-Route::get('/register', [registrationController::class, 'getRegistration']);
-Route::post('/register', [registrationController::class, 'postRegistration']);
+Route::get('/register', [registrationController::class, 'getRegistration'])->name('getRegistration');
+Route::post('/register', [registrationController::class, 'postRegistration'])->name('postRegistration');
 
 //profile
-Route::get('/profile', [profileController::class, 'profile'])->name('profile');
-// Route::post('/profile', [profileController::class, 'profile'])->name('profile');
+// Route::get('/profile', [profileController::class, 'profile'])->name('profile');
+Route::get('/profile', [profileController::class, 'profileView'])->name('profileView');
+Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
+Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
+Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');
 
- 

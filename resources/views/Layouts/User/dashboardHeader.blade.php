@@ -15,11 +15,12 @@
       </nav>
         <ul class="nav justify-content-end">
         <li class="nav-item">
-        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="{{route('profile')}}">Profile</a>
+        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="{{route('profileView')}}">Profile</a>
         </li>
         <li class="nav-item">
         <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="{{route('logout')}}">Logout</a>
         </li></button> 
         </ul>
+
   </div>
 </nav>
