@@ -63,7 +63,7 @@ class profileController extends Controller
     {
         return view('Pages.User.editProfile');
     }
-    
+
     function submiteData(Request $request)
     {
         $this->validate($request,
@@ -100,10 +100,10 @@ class profileController extends Controller
 
         if (isset($error)) {
             $output = "<h1>Submitted</h1>";
-            $output .= "udname: " . $request->udname;
-            $output .= "<br>udcontact: " . $request->udcontact;
-            $output .= "<br>udemail: " . $request->udemail;
-            $output .= "<br>udpassword: " . $request->udpassword;
+            $output .= "udname: " . $request->name;
+            $output .= "<br>udcontact: " . $request->contact;
+            $output .= "<br>udemail: " . $request->email;
+            $output .= "<br>udpassword: " . $request->password;
             return $output;
         } else {
             $udname = $request->name;
@@ -112,12 +112,15 @@ class profileController extends Controller
             $udpassword = $request->pass;
             $uid = session()->get('userId');
             $usetable = new user();
-            $userupdate = $usetable->where('id', $uid)->update(['name' => $request->udname]);
-            $userupdate = $usetable->where('id', $uid)->update(['email' => $request->udemail]);
-            $userupdate = $usetable->where('id', $uid)->update(['dob' => $request->uddob]);
-            $userupdate = $usetable->where('id', $uid)->update(['password' => $request->udpassword]);
+            $userupdate = $usetable->where('id', $uid)->update(['name' => $request->name]);
+            $userupdate = $usetable->where('id', $uid)->update(['email' => $request->email]);
+            $userupdate = $usetable->where('id', $uid)->update(['dob' => $request->dob]);
+            $userupdate = $usetable->where('id', $uid)->update(['password' => $request->pass]);
 
-            return redirect()->intended('/profileView');
+            session()->put('userId',$uid);
+            session()->put('user',$udname);
+
+            return redirect()->intended('/profile');
 
         }
     }

@@ -17,7 +17,7 @@ class checkLogin
 
         public function handle(Request $request, Closure $next)
         {
-            if($request->session()->get('id')){
+            if($request->session()->get('userId')){
                 return $next($request);
             }
             else{

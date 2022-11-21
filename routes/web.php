@@ -21,8 +21,9 @@ use App\Http\Controllers\uDashController;
 */
 
 
-
-
+Route::get('/editprofile', function () {
+    return view('editProfile');
+});
 //home
 Route::get('/', [homeController::class, 'home'])->name('home');
 //login Controller
@@ -41,7 +42,7 @@ Route::post('/register', [registrationController::class, 'postRegistration'])->n
 
 //profile
 // Route::get('/profile', [profileController::class, 'profile'])->name('profile');
-Route::get('/profile', [profileController::class, 'profileView'])->name('profileView');
+Route::get('/profile', [profileController::class, 'profileView'])->name('profileView')->middleware('checkLogin');
 Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
 Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
 Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');

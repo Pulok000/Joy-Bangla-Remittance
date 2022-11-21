@@ -3,12 +3,12 @@
 
 <div class="custom-login">
     <div class="center">
+    <br>
 
-        <h1> USER PROFILE </h1>
+    <br>
 
         <form action="/submitdata" method="post">
             {{csrf_field()}}
-
             <!-- Name: -->
             <div class="row mb-3">
                 <label for="colFormLabel" class="col-sm-3 col-form-label col-form-label-sm">Full Name:  </label>
@@ -23,7 +23,6 @@
   
                 </div>
             </div>
-
 
             <!-- DOB: -->
             <div class="row mb-3">
@@ -92,7 +91,7 @@
             </div>
             <!-- End -->
 
-            <button type="submit" class="btn btn-primary" value="Submit">Sign Up</button>
+            <button type="submit" class="btn btn-primary" value="Submit">Update</button>
             <!-- <input type="submit" value="Submit"> -->
             </form>            
             
