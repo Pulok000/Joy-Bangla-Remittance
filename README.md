@@ -17,6 +17,12 @@ Type of users
 - Customer can do transation with prefered user.   
 - Customer can see transaction history and user information.
 
+
+## Technology:
+- [x] Language: Php,Javascript,Jquery,Css,Html
+- [x] Framework: Laravel 9, React Js 18.2, bootstrape 5.2
+- [x] Database: SQL
+
 ## Usage Instruction
 
 Clone the repositore in your computer.
