@@ -1,6 +1,6 @@
 # Joy Bangla Remittance
 
-This application serves as a platform for immigrants who need to transfer money between parties from different countries.
+This application serves as a platform for immigrants who need to transfer money between differnt parties from different countries.
 
 ## Functionalities: 
 
