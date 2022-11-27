@@ -3,7 +3,7 @@
 
 ## Usage Instruction
 
-STEP-1:
+Clone the repositore in your computer.
 
 ```bash
 git clone https://github.com/Pulok000/AWT-Fall-2022-2023.git
