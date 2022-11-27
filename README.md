@@ -1,5 +1,21 @@
 # Joy Bangla Remittance
 
+This application serves as a platform for immigrants who need to transfer money between parties from different countries.
+
+## Functionalities: 
+
+Type of users
+- [x] 1. Admin   
+- Admins can create admins.  
+- Admins can delete and edit customers and bank agents.   
+- Admins can delete, edit, and view all the activity in the system.  
+
+- [x] 2. Bank Agent   
+- Agent can create, edit,delete and block transaction activities.  
+
+- [x] 3. Customer   
+- Customer can do transation with prefered user.   
+- Customer can see transaction history and user information.
 
 ## Usage Instruction
 
