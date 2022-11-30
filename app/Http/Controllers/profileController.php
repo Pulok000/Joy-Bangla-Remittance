@@ -136,29 +136,34 @@ class profileController extends Controller
         return view('Pages.User.home');
     }
 
-    function searchUser(Request $request)
-    {
-        
-                $uid = $request->id;
-                $name = $usertable->where('id', $uid)->pluck('name');
-                foreach ($name as $n) {
-                    $uname = $n;
-                }
-                $email = $usertable->where('id', $uid)->pluck('email');
-                foreach ($email as $c) {
-                    $uemail = $c;
-                }
-                $dob = $usertable->where('id', $uid)->pluck('dob');
-                foreach ($dob as $c) {
-                    $udob = $c;
-                }
-                return view('Pages.User.userDashboard')->with("uname", $uname)
-                    ->with("uid", $uid)
-                    ->with("uemail", $uemail)
-                    ->with("udob", $udob);
-
-        
-
+    function apiShow(){
+        return response()->json(user::all());
     }
+    function apiAllUser()
+    {
+        return view('Pages.User.allUser');
+    }
+
+    function apiaddUser()
+    {
+        return view('Pages.User.adduser');
+    }
+
+    function apisubmitUser(Request $request)
+    {
+        $usetable=new user();
+            $usetable->name=$request->name;
+            $usetable->email=$request->email;
+            $usetable->dob=$request->dob;
+            $usetable->password=$request->pass;
+            $usetable->save();
+
+    
+
+            echo '<script>alert("Registration Completed")</script>';
+          
+            return view('Pages.User.login');
+    }
+    
 
 }

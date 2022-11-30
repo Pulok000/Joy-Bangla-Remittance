@@ -18,9 +18,9 @@
 
       <nav class="navbar bg-light">
         <div class="container-fluid">
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" aria-label="Search" >
-            <button class="btn btn-outline-success" type="submit" value="{{route('searchUser')}}">Search</button>
+          <form class="d-flex" action="/search" method="get" role="search">
+            <input class="form-control me-2" name="search" type="search" aria-label="Search" >
+            <button class="btn btn-outline-success" type="submit" value="">Search</button>
           </form>
         </div>
       </nav>

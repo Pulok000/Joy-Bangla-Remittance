@@ -46,5 +46,10 @@ Route::get('/profile', [profileController::class, 'profileView'])->name('profile
 Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
 Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
 Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');
-Route::post('/search', [uDashController::class,'searchUser'])->name('searchUser');
+Route::get('/search', [uDashController::class,'searchUser'])->name('searchUser');
 
+//apitest:
+
+Route::get('/alluser', [profileController::class, 'apiAllUser'])->name('apiAllUser');
+Route::get('/adduser', [profileController::class, 'apiaddUser'])->name('apiaddUser');
+Route::post('/adduser', [profileController::class, 'apisubmitUser'])->name('apisubmitUser');
