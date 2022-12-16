@@ -1,30 +1,57 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { Component } from 'react'
+import ReactDOM from 'react-dom';
+import axios from 'axios';
 
-function Example() {
-    return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="col-md-8">
-                    <div className="card">
-                        <div className="card-header">Example Component</div>
+class AxioGet extends Component {
+  state = {
+        posts: []
+      }
+    
+      componentDidMount() {
+        axios.get('http://localhost:8000/api/login')
+        .then(response => {
+          const posts = response.data;
+          this.setState({posts});
+        })
+      }
+   
+        render(){
+          return(
+              <table class="table">
+              <thead>
+                  <tr class="bg-danger">
+                      <th scope="col">PRODUCT CD</th>
+                      <th scope="col">DATE OFFERED</th>
+                      <th scope="col">NAME</th>
+                      <th scope="col">PRODUCT_TYPE_CD</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {this.state.posts && this.state.posts.map(post => 
+                      <tr>
+                          <td scope="row">{post.PRODUCT_CD}</td>
+                          <td>{post.DATE_OFFERED}</td>
+                          <td>{post.NAME}</td>
+                          <td>{post.PRODUCT_TYPE_CD}</td>
+                      </tr>)}
+              </tbody>
+          </table>
+  
+          )
+      }
 
-                        <div className="card-body">I'm an example component!</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+
+
 }
+  
+  export default AxioGet;
+  
+if (document.getElementById('axioget')) {
+  const Index = ReactDOM.createRoot(document.getElementById("axioget"));
 
-export default Example;
-
-if (document.getElementById('example')) {
-    const Index = ReactDOM.createRoot(document.getElementById("example"));
-
-    Index.render(
-        <React.StrictMode>
-            <Example/>
-        </React.StrictMode>
-    )
+  Index.render(
+      <React.StrictMode>
+          <AxioGet/>
+      </React.StrictMode>
+  )
 }

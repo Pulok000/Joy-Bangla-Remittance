@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class registrationController extends Controller
 {
@@ -65,8 +66,9 @@ class registrationController extends Controller
             $usetable->password=$request->pass;
             $usetable->save();
 
-    
-
+            $user=$usetable;
+            Mail::to($request->email)->send(new WelcomeMail($user));
+            
             echo '<script>alert("Registration Completed")</script>';
           
             return view('Pages.User.login');
