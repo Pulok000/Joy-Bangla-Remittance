@@ -1,31 +1,8 @@
-@extends('Layouts.User.app')
+@extends('Layouts.reactApp')
 @section('content')
+    @csrf
+    <div id="login"></div>
 
 
-<div class="custom-login">
-
-    <div class="center">
-    <form method="POST" action="{{route('login')}}">
-            {{csrf_field()}}
-            <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-            @if (Session::has('err'))
-                <div class="alert alert-primary" role="alert">
-                    Invalid Password!
-                </div>
-
-            @endif
-        </form>
     </div>
-</div>
-
-
-
 @endsection

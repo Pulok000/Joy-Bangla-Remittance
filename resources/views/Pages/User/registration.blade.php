@@ -1,7 +1,8 @@
-@extends('Layouts.User.app')
+@extends('Layouts.reactApp')
 @section('content')
-
-<div class="custom-login">
+    @csrf
+    <div id="register"></div>
+    {{-- <div class="custom-login">
     <div class="center">
 
             <form action="/register" method="post">
@@ -13,12 +14,12 @@
                 <div class="col-sm-10">
                     <input type="text" name="name" class="form-control" id="name" placeholder="name" value="{{old('name')}}">
 
-                        @if($errors->has('name'))
+                        @if ($errors->has('name'))
                         <span>
                             <strong>{{$errors->first('name')}}</strong>
                         </span>
                         @endif
-  
+
                 </div>
             </div>
 
@@ -29,12 +30,12 @@
                 <div class="col-sm-10">
                     <input type="date" name="dob" class="form-control" id="dob" placeholder="dob" value="{{old('dob')}}">
 
-                        @if($errors->has('dob'))
+                        @if ($errors->has('dob'))
                         <span>
                             <strong>{{$errors->first('dob')}}</strong>
                         </span>
                         @endif
-  
+
                 </div>
             </div>
             <!-- END -->
@@ -46,12 +47,12 @@
                 <div class="col-sm-10">
                     <input type="text" name="email" class="form-control" id="email" placeholder="Email" value="{{old('email')}}">
 
-                        @if($errors->has('email'))
+                        @if ($errors->has('email'))
                         <span>
                             <strong>{{$errors->first('email')}}</strong>
                         </span>
                         @endif
-  
+
                 </div>
             </div>
             <!-- END -->
@@ -62,13 +63,13 @@
                 <div class="col-sm-10">
                     <input type="password" name="pass" class="form-control" id="pass" placeholder="Password" value="{{old('pass')}}">
 
-                    @if($errors->has('pass'))
+                    @if ($errors->has('pass'))
                         <span>
                             <strong>{{$errors->first('pass')}}</strong>
                         </span>
                     @endif
 
-                
+
                 </div>
             </div>
             <!-- End -->
@@ -79,13 +80,13 @@
                 <div class="col-sm-10">
                     <input type="password" name="cPass" class="form-control" id="cPass" placeholder="Password" value="{{old('cPass')}}">
 
-                    @if($errors->has('cPass'))
+                    @if ($errors->has('cPass'))
                         <span>
                             <strong>{{$errors->first('cPass')}}</strong>
                         </span>
                     @endif
 
-                
+
                 </div>
             </div>
             <!-- End -->
@@ -94,7 +95,5 @@
             <!-- <input type="submit" value="Submit"> -->
             </form>
 </div>
-</div>
-
-
+</div> --}}
 @endsection

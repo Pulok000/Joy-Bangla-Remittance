@@ -9,6 +9,6 @@ class homeController extends Controller
     //
     function home()
     {
-        return view('pages.user.home');
+        return view('Pages.User.home');
     }
 }

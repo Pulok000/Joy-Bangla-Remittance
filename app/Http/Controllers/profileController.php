@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\user;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
-use App\Models\user;
+use App\Models\Users;
 
 
 
 class profileController extends Controller
 {
-    
+
     function profile()
     {
         return view('Pages.User.profile');
@@ -20,12 +21,12 @@ class profileController extends Controller
 
     function profileView()
     {
-        
-        $usertable = new user();
+
+        $usertable = new Users();
         if (session()->has('userId')) {
             $uid = session()->get('userId');
             $user = $usertable->where('id', $uid);
-            
+
             if (!empty($uid)) {
                 $name = $usertable->where('id', $uid)->pluck('name');
                 foreach ($name as $n) {
@@ -39,12 +40,12 @@ class profileController extends Controller
                 foreach ($dob as $c) {
                     $udob = $c;
                 }
-                
+
                 $pass = $usertable->where('id', $uid)->pluck('password');
                 foreach ($pass as $c) {
                     $upass = $c;
                 }
-                
+
                 return view('Pages.User.profile')->with("uname", $uname)
                     ->with("uid", $uid)
                     ->with("uemail", $uemail)
@@ -56,7 +57,6 @@ class profileController extends Controller
                 // return view('Pages.User.profile');
             }
         }
-
     }
 
     function editProfile()
@@ -66,36 +66,37 @@ class profileController extends Controller
 
     function submiteData(Request $request)
     {
-        $this->validate($request,
-        [
-            'name'=>'required|min:3|max:20',
-            'email'=>'required|email|max:255|unique:users,email',
-            'dob' => 'required|date|before:2001',
-            'pass'=>'required|between:6,15',
-            'cPass'=>'required|same:pass'
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|min:3|max:20',
+                'email' => 'required|email|max:255|unique:Users,email',
+                'dob' => 'required|date|before:2001',
+                'pass' => 'required|between:6,15',
+                'cPass' => 'required|same:pass'
 
-        ],
-        [
+            ],
+            [
 
-            'name.required'=>'Please put your name',
-            'name.min'=>'Name must be greater than 2 charcters',
-
-           
-            'email.required'=>'Please put your email',
-            'email.unique'=>'your email should be unique',
-
-            'dob.required'=>'Please put your password',
-            'dob.before'=>'User Must be 18 Years old',
-            
-            'pass.required'=>'Please put your password',
-            'pass.between'=>'your password should contain atleast 6 characters and highest 15 character',
-
-            'cPass.required'=>'your password should match',
-            'cPass.required'=>'your password should match',
+                'name.required' => 'Please put your name',
+                'name.min' => 'Name must be greater than 2 charcters',
 
 
-            
-        ]
+                'email.required' => 'Please put your email',
+                'email.unique' => 'your email should be unique',
+
+                'dob.required' => 'Please put your password',
+                'dob.before' => 'User Must be 18 Years old',
+
+                'pass.required' => 'Please put your password',
+                'pass.between' => 'your password should contain atleast 6 characters and highest 15 character',
+
+                'cPass.required' => 'your password should match',
+                'cPass.required' => 'your password should match',
+
+
+
+            ]
         );
 
         if (isset($error)) {
@@ -111,24 +112,23 @@ class profileController extends Controller
             $uddob = $request->dob;
             $udpassword = $request->pass;
             $uid = session()->get('userId');
-            $usetable = new user();
+            $usetable = new Users();
             $userupdate = $usetable->where('id', $uid)->update(['name' => $request->name]);
             $userupdate = $usetable->where('id', $uid)->update(['email' => $request->email]);
             $userupdate = $usetable->where('id', $uid)->update(['dob' => $request->dob]);
             $userupdate = $usetable->where('id', $uid)->update(['password' => $request->pass]);
 
-            session()->put('userId',$uid);
-            session()->put('user',$udname);
+            session()->put('userId', $uid);
+            session()->put('user', $udname);
 
             return redirect()->intended('/profile');
-
         }
     }
 
     function deleteProfile(Request $request)
     {
         $uid = session()->get('userId');
-        $usertable = new  user();
+        $usertable = new  Users();
         $userDeleted = $usertable->where('id', $uid)->delete();
         session()->flush();
         echo '<script>alert("Your Account is deleted")</script>';
@@ -136,8 +136,9 @@ class profileController extends Controller
         return view('Pages.User.home');
     }
 
-    function apiShow(){
-        return response()->json(user::all());
+    function apiShow()
+    {
+        return response()->json(Users::all());
     }
     function apiAllUser()
     {
@@ -151,19 +152,17 @@ class profileController extends Controller
 
     function apisubmitUser(Request $request)
     {
-        $usetable=new user();
-            $usetable->name=$request->name;
-            $usetable->email=$request->email;
-            $usetable->dob=$request->dob;
-            $usetable->password=$request->pass;
-            $usetable->save();
+        $usetable = new Users();
+        $usetable->name = $request->name;
+        $usetable->email = $request->email;
+        $usetable->dob = $request->dob;
+        $usetable->password = $request->pass;
+        $usetable->save();
 
-    
 
-            echo '<script>alert("Registration Completed")</script>';
-          
-            return view('Pages.User.login');
+
+        echo '<script>alert("Registration Completed")</script>';
+
+        return view('Pages.User.login');
     }
-    
-
 }

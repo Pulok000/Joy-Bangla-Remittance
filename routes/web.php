@@ -28,14 +28,14 @@ use App\Http\Controllers\MailController;
 //home ->name('home')
 Route::get('/', [homeController::class, 'home'])->name('home');
 //login Controller ->name('login')
-Route::get('/login', [loginController::class,'login'])->name('login');
+Route::get('/login', [loginController::class, 'login'])->name('login');
 // ->name('loginConfirm')
-Route::post('/login', [loginController::class,'loginConfirm']);
+Route::post('/login', [loginController::class, 'loginConfirm']);
 //logout->name('logout')
 Route::get('/logout', [loginController::class, 'logout']);
 
 //login Controller
-Route::get('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
+Route::get('/userDashboard', [uDashController::class, 'dashboard'])->name('dashboard');
 
 
 // //registration
@@ -45,10 +45,11 @@ Route::post('/register', [registrationController::class, 'postRegistration'])->n
 //profile
 
 Route::get('/profile', [profileController::class, 'profileView'])->middleware('checkLogin');
-Route::get('/deleteprofile', [profileController::class, 'deleteProfile']);
-Route::get('/editprofile', [profileController::class, 'editProfile']);
+Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
+
+Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
 Route::post('/submitdata', [profileController::class, 'submiteData']);
-Route::get('/search', [uDashController::class,'searchUser']);
+Route::get('/search', [uDashController::class, 'searchUser']);
 
 //apitest:
 
@@ -57,5 +58,7 @@ Route::get('/adduser', [profileController::class, 'apiaddUser'])->name('apiaddUs
 Route::post('/adduser', [profileController::class, 'apisubmitUser'])->name('apisubmitUser');
 
 //message
-Route::get('/sendemail', [MailController::class,'index'])->name('inbox');;
-Route::post('/sendemail',[MailController::class,'send'])->name('sendMessage');;
+Route::get('/sendemail', [MailController::class, 'index'])->name('inbox');;
+Route::post('/sendemail', [MailController::class, 'send'])->name('sendMessage');;
+
+Route::get('/api/userDashboard', [uDashController::class, 'dashboard'])->name('udashboard');

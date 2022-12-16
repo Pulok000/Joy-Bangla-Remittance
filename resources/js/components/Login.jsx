@@ -1,60 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("admin-info")) {
-      navigate("/home");
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { useState } from 'react'
+export default function Login() {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [error, setError] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('/api/login', {
+            email: email,
+            password: password
+        }).then(function (response) {
+            if (response.status === 200) {
+                window.location.href = "/userDashboard"
+            }
+
+        })
+            .catch(function (error) {
+                setError(error.response.data.message)
+                console.log(error.response.data.message);
+            });
     }
-  }, []);
+    return (
+        <div>
+            <div className="col-3 m-auto p-5">
 
-  async function loginSubmit() {
-    console.warn(email, password);
-    let item = { email, password };
+                <div className="center">
+                    <h1 className='text-center p-4'>Login</h1>
+                    {error && <div className="alert alert-danger text-center" role="alert">{error}</div>}
 
-    let result = await fetch("http://127.0.0.1:8000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(item),
-    });
-    result = await result.json();
-    localStorage.setItem("user-info", JSON.stringify(result));
-    navigate("/add");
-  }
-  return (
-
-
-    
-    <div className="col-sm-6 offset-sm-3">
-      
-      <h1>Login</h1>
-      <form>
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="form-control"
-          placeholder="Email"
-        />
-        <br />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="form-control"
-          placeholder="Password"
-        />
-      </form>
-      <button onClick={loginSubmit} className="btn btn-primary">
-        Login
-      </button>
-    </div>
-  );
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                            <input type="email" name="email" className="form-control" id="email" onChange={(e) => setEmail(e.target.value)} />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                            <input type="password" name="password" className="form-control" id="password" onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <button type="submit" className="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div >
+        </div >
+    )
 }
-export default Login;
+
+
+if (document.getElementById('login')) {
+    const Index = ReactDOM.createRoot(document.getElementById("login"));
+
+    Index.render(
+        <React.StrictMode>
+            <Login />
+        </React.StrictMode>
+    )
+}

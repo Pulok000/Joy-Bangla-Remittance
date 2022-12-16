@@ -4,7 +4,8 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
-import './bootstrap';
+import "./bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -12,5 +13,6 @@ import './bootstrap';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// import './components/Example';
-import './components/Login';
+import "./components/Example";
+import "./components/Login";
+import "./components/Register";

@@ -1,18 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Mail\WelcomeMail;
+use App\Models\Users;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class registrationController extends Controller
+class RegistrationController extends Controller
 {
-    function getRegistration()
-    {
-        return view('Pages.User.registration');
-    }
     function postRegistration(Request $request)
     {
 
@@ -36,7 +33,7 @@ class registrationController extends Controller
                 'email.required' => 'Please put your email',
                 'email.unique' => 'your email should be unique',
 
-                'dob.required' => 'Please put your password',
+                'dob.required' => 'Please put your DOB',
                 'dob.before' => 'User Must be 18 Years old',
 
                 'pass.required' => 'Please put your password',
@@ -50,28 +47,19 @@ class registrationController extends Controller
             ]
         );
 
+        $usetable = new Users();
+        $usetable->name = $request->name;
+        $usetable->email = $request->email;
+        $usetable->dob = $request->dob;
+        $usetable->password = $request->pass;
+        $usetable->save();
 
-        if (isset($error)) {
-            $output = "<h1>Submitted</h1>";
-            $output .= "username: " . $request->name;
-            $output .= "<br>email: " . $request->email;
-            $output .= "<br>email: " . $request->dob;
-            $output .= "<br>lan: " . $request->password;
-            return $output;
-        } else {
-            $usetable = new user();
-            $usetable->name = $request->name;
-            $usetable->email = $request->email;
-            $usetable->dob = $request->dob;
-            $usetable->password = $request->pass;
-            $usetable->save();
+        // $user = $usetable;
+        // Mail::to($request->email)->send(new WelcomeMail($user));
 
-            $user = $usetable;
-            Mail::to($request->email)->send(new WelcomeMail($user));
-
-            echo '<script>alert("Registration Completed")</script>';
-
-            return view('Pages.User.login');
-        }
+        return response()->json([
+            'message' => 'Registration Successfull',
+            'data' => $usetable
+        ], 200);
     }
 }
