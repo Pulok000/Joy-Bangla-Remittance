@@ -6,6 +6,9 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\registrationController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\uDashController;
+use App\Http\Controllers\MailController;
+
+
 
 
 
@@ -21,35 +24,38 @@ use App\Http\Controllers\uDashController;
 */
 
 
-Route::get('/editprofile', function () {
-    return view('editProfile');
-});
-//home
+
+//home ->name('home')
 Route::get('/', [homeController::class, 'home'])->name('home');
-//login Controller
+//login Controller ->name('login')
 Route::get('/login', [loginController::class,'login'])->name('login');
-Route::post('/login', [loginController::class,'loginConfirm'])->name('loginConfirm');
-//logout
-Route::get('/logout', [loginController::class, 'logout'])->name('logout');
+// ->name('loginConfirm')
+Route::post('/login', [loginController::class,'loginConfirm']);
+//logout->name('logout')
+Route::get('/logout', [loginController::class, 'logout']);
 
 //login Controller
 Route::get('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
-// Route::post('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
+
 
 // //registration
-Route::get('/register', [registrationController::class, 'getRegistration'])->name('getRegistration');
-Route::post('/register', [registrationController::class, 'postRegistration'])->name('postRegistration');
+Route::get('/register', [registrationController::class, 'getRegistration'])->name('register');
+Route::post('/register', [registrationController::class, 'postRegistration'])->name('postregister');
 
 //profile
-// Route::get('/profile', [profileController::class, 'profile'])->name('profile');
-Route::get('/profile', [profileController::class, 'profileView'])->name('profileView')->middleware('checkLogin');
-Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
-Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
-Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');
-Route::get('/search', [uDashController::class,'searchUser'])->name('searchUser');
+
+Route::get('/profile', [profileController::class, 'profileView'])->middleware('checkLogin');
+Route::get('/deleteprofile', [profileController::class, 'deleteProfile']);
+Route::get('/editprofile', [profileController::class, 'editProfile']);
+Route::post('/submitdata', [profileController::class, 'submiteData']);
+Route::get('/search', [uDashController::class,'searchUser']);
 
 //apitest:
 
 Route::get('/alluser', [profileController::class, 'apiAllUser'])->name('apiAllUser');
 Route::get('/adduser', [profileController::class, 'apiaddUser'])->name('apiaddUser');
 Route::post('/adduser', [profileController::class, 'apisubmitUser'])->name('apisubmitUser');
+
+//message
+Route::get('/sendemail', [MailController::class,'index'])->name('inbox');;
+Route::post('/sendemail',[MailController::class,'send'])->name('sendMessage');;

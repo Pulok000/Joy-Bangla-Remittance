@@ -21,7 +21,7 @@ class loginController extends Controller
             session()->put('userId',$check->id);
             session()->put('user',$check->name);
 
-            return redirect()->route('dashboard');
+            return redirect()->route('udashboard');
 
         }
         

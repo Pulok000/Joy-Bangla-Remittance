@@ -24,11 +24,11 @@
         <ul class="nav justify-content-end">
 
         <li class="nav-item">
-        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="{{route('editProfile')}}">Edit</a>
+        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="/editprofile">Edit</a>
         </li></button> 
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <li class="nav-item">
-        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="{{route('deleteProfile')}}">delete</a>
+        <button type="button" class="btn btn-light"><a style="font-size: 20px" class="nav-link" href="/deleteprofile">delete</a>
         </li>
 
         </ul>

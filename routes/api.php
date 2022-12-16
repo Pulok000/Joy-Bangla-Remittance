@@ -23,34 +23,36 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/editprofile', function () {
-    return view('editProfile');
-});
+
 //home
-Route::get('/', [homeController::class, 'home'])->name('home');
-//login Controller
-Route::get('/login', [loginController::class,'login'])->name('login');
+Route::get('/', [homeController::class, 'home']);
+//login Controller ->name('login')
+Route::get('/login', [loginController::class,'login']);
 Route::post('/login', [loginController::class,'loginConfirm'])->name('loginConfirm');
 //logout
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 
 //login Controller
-Route::get('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
+Route::get('/userDashboard', [uDashController::class,'dashboard'])->name('udashboard');
 // Route::post('/userDashboard', [uDashController::class,'dashboard'])->name('dashboard');
 
 // //registration
-Route::get('/register', [registrationController::class, 'getRegistration'])->name('getRegistration');
-Route::post('/register', [registrationController::class, 'postRegistration'])->name('postRegistration');
+Route::get('/register', [registrationController::class, 'getRegistration'])->name('registration');
+Route::post('/register', [registrationController::class, 'postRegistration'])->name('postregistration');
 
 //profile
-// Route::get('/profile', [profileController::class, 'profile'])->name('profile');
+
 Route::get('/profile', [profileController::class, 'profileView'])->name('profileView')->middleware('checkLogin');
 Route::get('/deleteprofile', [profileController::class, 'deleteProfile'])->name('deleteProfile');
 Route::get('/editprofile', [profileController::class, 'editProfile'])->name('editProfile');
 Route::post('/submitdata', [profileController::class, 'submiteData'])->name('submiteData');
 Route::get('/search', [uDashController::class,'searchUser'])->name('searchUser');
 
-
+//api test
 
 Route::get('alluser', [profileController::class, 'apiShow']);
 Route::post('adduser', [profileController::class, 'apisubmitUser']);
+
+//message
+Route::get('/sendemail', [MailController::class,'index']);
+Route::post('/sendemail',[MailController::class,'send']);
