@@ -8,11 +8,27 @@
 </head>
 
 <body>
-    @include('Layouts.User.siteHeader')
-    @yield('content')
-    @include('Layouts.User.footer')
-    @viteReactRefresh
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+
+        @if (Session::has('user'))
+
+        @include('Layouts.User.dashboardHeader')
+        @yield('content')
+        @include('Layouts.User.footer')
+
+        @else
+
+        @include('Layouts.User.siteHeader')
+        @yield('content')
+        @include('Layouts.User.footer')
+                
+        @endif
+
+        @viteReactRefresh
+        @vite(['resources/js/app.js', 'resources/css/app.css'])
+        
 </body>
 
 </html>
+
+
+

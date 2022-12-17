@@ -7,6 +7,9 @@ export default function Register() {
     const [pass, setPass] = React.useState('');
     const [cPass, setCPass] = React.useState('');
 
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         axios.post('/api/register', {
@@ -24,7 +27,7 @@ export default function Register() {
 
     return (
         <div>
-            <div className="col-6 m-auto">
+            <div className="col-7 m-auto">
                 <form onSubmit={handleSubmit}>
 
                     <div className="row mb-3">

@@ -16,3 +16,5 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./components/Example";
 import "./components/Login";
 import "./components/Register";
+import "./components/EditProfile";
+import "./components/UpdateProfile";

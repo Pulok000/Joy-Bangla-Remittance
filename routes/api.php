@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\LoginController as ApiLoginController;
 use App\Http\Controllers\Api\RegistrationController as ApiRegistrationController;
+use App\Http\Controllers\Api\EditController as ApiEditController;
+use App\Http\Controllers\Api\DeleteController as ApiDeleteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\profileController;
@@ -9,6 +11,9 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\registrationController;
 use App\Http\Controllers\uDashController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +33,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [ApiLoginController::class, 'login']);
 Route::post('/register', [ApiRegistrationController::class, 'postRegistration']);
+Route::get('/profile', [ApiEditController::class,'profileView']);
+Route::post('/profile', [ApiEditController::class,'editProfile']);
+Route::post('/deleteprofile', [ApiDeleteController::class,'deleteProfile']);
 
 
 /*
