@@ -37,32 +37,26 @@ export default function EditProfile() {
             [e.target.name]: e.target.value
         })
     }
-    // const handledelete = (e) => {
-    //     e.preventDefault();
-    //     axios.post('/api/deleteprofile', {
 
-    //     }).then(res => {
-    //         setUser(res.data)
-    //     }).catch((error) => {
-    //         console.log(error);
-    //     })
-    // }
+    const deleteUser = (id) => {
+        axios.post('/api/deleteprofile', id).then((res) => {
+          fetchAllUsers();
+        });
+      };
 
     
 
 
-    const handledelete = (e) => {
-        e.preventDefault()
-        axios.patch('/api/updateProfile', user)
+    const handledelete=() => {
+
+        axios.post('/api/deleteprofile')
             .then(res => {
                 console.log(res)
-                window.location = '/profile'
+                window.location = '/login'
 
             })
             .catch(err => {
-                if (err.response.data) {
-                    setErr(err.response.data.errors)
-                }
+    
             })
     }
 
@@ -96,7 +90,7 @@ export default function EditProfile() {
                         Date Of Birth: {user.udob}  
                         <br/> 
                         Password: {user.upass} 
-                        <button type="button" onClick={(e) => { setName(user.uid) }}  className="btn btn-primary"  > Delete Profile</button>
+                        <button type="button" onClick= { handledelete}  className="btn btn-primary"  > Delete Profile</button>
                             
 
 

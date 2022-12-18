@@ -35,7 +35,7 @@ Route::post('/login', [ApiLoginController::class, 'login']);
 Route::post('/register', [ApiRegistrationController::class, 'postRegistration']);
 Route::get('/profile', [ApiEditController::class,'profileView']);
 Route::post('/profile', [ApiEditController::class,'editProfile']);
-Route::post('/deleteprofile', [ApiDeleteController::class,'deleteProfile']);
+Route::post('/deleteprofile', [ApiEditController::class,'deleteProfile']);
 
 
 /*

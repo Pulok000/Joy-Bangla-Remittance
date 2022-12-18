@@ -45,14 +45,7 @@ function editProfile(Request $request)
         ]
     );
 
-    if (isset($error)) {
-        $output = "<h1>Submitted</h1>";
-        $output .= "udname: " . $request->name;
-        $output .= "<br>udcontact: " . $request->contact;
-        $output .= "<br>udemail: " . $request->email;
-        $output .= "<br>udpassword: " . $request->password;
-        return $output;
-    } else {
+
         $udname = $request->name;
         $udemail = $request->email;
         $uddob = $request->dob;
@@ -71,7 +64,7 @@ function editProfile(Request $request)
         return response()->json([
             'message' => 'information updated'
         ], 200);
-    }
+    
 }
 
 
@@ -111,4 +104,19 @@ function editProfile(Request $request)
             ], 200);
         }
     }
+
+
+    function deleteProfile(Request $request)
+    {
+        $uid = session()->get('userId');
+        $usertable = new  Users();
+        $userDeleted = $usertable->where('id', $uid)->delete();
+        session()->flush();
+        echo '<script>alert("Your Account is deleted")</script>';
+
+        return response()->json([
+            'message' => 'Profile deleted',
+        ], 200);
+    }
+
 }
